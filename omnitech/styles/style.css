@@ -26,12 +26,12 @@ header {
 }
 
 .max-header {
-  background-color: #2574A9;
+  background-color: #2574a9;
   height: 100px;
 }
 
 .min-header {
-  background-color: #C5EFF7;
+  background-color: #c5eff7;
   height: 80px;
 }
 
@@ -41,19 +41,17 @@ header {
   margin: 0 auto;
   padding: 0 60px;
   display: grid;
-  grid-template-areas: 
-    'lgo ... nav';
+  grid-template-areas: 'lgo ... nav';
   grid-template-columns: auto 1fr auto;
   align-content: center;
 }
 
-.logo { 
+.logo {
   grid-area: lgo;
 }
 
 .logo img {
   transition: all 0.4s ease-out;
-
 }
 
 .max-logo img {
@@ -77,25 +75,60 @@ header {
 }
 
 .nav-bar a {
+  position: relative;
   font-family: 'Taxi Driver';
   text-transform: uppercase;
   transition: all 0.4s ease-out;
 }
 
+.nav-bar a::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: all 0.2s ease-out;
+}
+
+.nav-bar a:hover::before {
+  transform: scaleX(1);
+}
+
+.nav-bar a::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.2s ease-out;
+}
+
+.nav-bar a:hover::after {
+  transform: scaleX(1);
+}
+
 .max-nav a {
-  color: #C5EFF7;
+  color: #c5eff7;
   font-size: 1em;
 }
 
 .min-nav a {
-  color: #2574A9;
+  color: #2574a9;
   font-size: 0.875em;
 }
 
 .ghost {
   width: 100%;
   height: 100px;
-  background-color: #CAE1F1;
+  background-color: #cae1f1;
 }
 
 main {
@@ -108,14 +141,134 @@ main section {
   align-content: center;
   font-family: 'Taxi Driver';
   font-size: 2em;
-  color: #2574A9;
+  color: #2574a9;
   height: 100vh;
 }
 
 main section:nth-child(odd) {
-  background-color: #CAE1F1;
+  background-color: #cae1f1;
 }
 
 main section:nth-child(even) {
-  background-color: #B7D5EB;
+  background-color: #b7d5eb;
+}
+
+@media (max-width: 768px) {
+  .max-header {
+    height: 80px;
+  }
+
+  .min-header {
+    height: 60px;
+  }
+
+  .container {
+    position: relative;
+    padding: 0 20px;
+    grid-template-areas: 'lgo ... mnu';
+  }
+
+  .max-logo img {
+    width: 220px;
+  }
+
+  .min-logo img {
+    width: 180px;
+  }
+
+  .nav-bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: #2980b9;
+    transform: translateX(-100%);
+    transition: all 0.3s ease-out;
+  }
+
+  .max-nav {
+    top: 80px;
+    height: calc(100vh - 80px);
+  }
+
+  .min-nav {
+    top: 60px;
+    height: calc(100vh - 60px);
+  }
+
+  .min-nav a {
+    color: #c5eff7;
+    font-size: 1em;
+  }
+
+  .menu-open {
+    transform: translateX(0);
+  }
+
+  .nav-bar ul {
+    justify-content: center;
+    grid-auto-flow: row;
+    grid-gap: 80px;
+  }
+
+  .nav-bar ul li {
+    text-align: center;
+  }
+
+  .menu {
+    grid-area: mnu;
+    display: grid;
+    align-content: center;
+  }
+
+  .hamburger {
+    width: 28px;
+    height: 3px;
+    background-color: #c5eff7;
+    position: relative;
+    transition: all 0.4s ease-out;
+  }
+
+  .hamburger::before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: -8px;
+    left: 0;
+    transition: all 0.4s ease-out;
+  }
+
+  .hamburger::after {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    background-color: #c5eff7;
+    transition: all 0.4s ease-out;
+  }
+
+  .max-hamburger,
+  .max-hamburger::before,
+  .max-hamburger::after {
+    background-color: #c5eff7;
+  }
+
+  .min-hamburger,
+  .min-hamburger::before,
+  .min-hamburger::after {
+    background-color: #2574a9;
+  }
+
+  .close-btn {
+    transform: rotateZ(45deg);
+    width: 32px;
+  }
+
+  .close-btn::before,
+  .close-btn::after {
+    top: 0;
+    transform: rotateZ(90deg);
+  }
 }

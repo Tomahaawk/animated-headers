@@ -1,9 +1,10 @@
 const $header = document.querySelector('header');
 const $logo = document.querySelectorAll('.logo')[0];
 const $nav = document.querySelectorAll('.nav-bar')[0];
+const $menu = document.querySelectorAll('.menu')[0];
 
 function toggleHeader() {
-  if(window.pageYOffset > 60 && $header.classList.contains('max-header')) {
+  if (window.pageYOffset > 60 && $header.classList.contains('max-header')) {
     $header.classList.remove('max-header');
     $header.classList.add('min-header');
 
@@ -14,7 +15,9 @@ function toggleHeader() {
     $nav.classList.remove('max-nav');
     $nav.classList.add('min-nav');
 
-  } else if(window.pageYOffset <= 60 && $header.classList.contains('min-header')) {
+    $menu.firstElementChild.classList.remove('max-hamburger');
+    $menu.firstElementChild.classList.add('min-hamburger');
+  } else if (window.pageYOffset <= 60 && $header.classList.contains('min-header')) {
     $header.classList.add('max-header');
     $header.classList.remove('min-header');
 
@@ -24,8 +27,32 @@ function toggleHeader() {
 
     $nav.classList.add('max-nav');
     $nav.classList.remove('min-nav');
+
+    $menu.firstElementChild.classList.add('max-hamburger');
+    $menu.firstElementChild.classList.remove('min-hamburger');
   }
 }
 
 window.addEventListener('scroll', toggleHeader, false);
 
+let isOpen = false;
+const toggleMenu = () => {
+  if (!isOpen) {
+    $nav.classList.add('menu-open');
+    $menu.firstElementChild.classList.add('close-btn');
+    isOpen = !isOpen;
+  } else {
+    $nav.classList.remove('menu-open');
+    $menu.firstElementChild.classList.remove('close-btn');
+    isOpen = !isOpen;
+  }
+};
+$menu.addEventListener('click', toggleMenu, false);
+
+const navClick = (e) => {
+  if (e.target.tagName === 'A') {
+    toggleMenu();
+  }
+};
+
+$nav.addEventListener('click', navClick, false);
