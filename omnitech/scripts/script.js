@@ -8,7 +8,6 @@ function toggleHeader() {
     $header.classList.remove('max-header');
     $header.classList.add('min-header');
 
-    $logo.firstElementChild.setAttribute('src', 'images/omnitech-logo-2.png');
     $logo.classList.remove('max-logo');
     $logo.classList.add('min-logo');
 
@@ -21,7 +20,6 @@ function toggleHeader() {
     $header.classList.add('max-header');
     $header.classList.remove('min-header');
 
-    $logo.firstElementChild.setAttribute('src', 'images/omnitech-logo-1.png');
     $logo.classList.add('max-logo');
     $logo.classList.remove('min-logo');
 
